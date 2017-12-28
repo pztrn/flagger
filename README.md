@@ -20,6 +20,7 @@ initialize flagger like:
 
 ```
 flgr = flagger.New(flagger.LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+flgr.Initialize()
 ```
 
 Adding a flag is easy, just fill ``Flag`` structure and pass to ``AddFlag()`` call:
