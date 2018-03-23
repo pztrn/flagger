@@ -1,4 +1,4 @@
-[![GoDoc](https://godoc.org/lab.pztrn.name/golibs/flagger?status.svg)](https://godoc.org/lab.pztrn.name/golibs/flagger) [![Build Status](https://travis-ci.org/pztrn/flagger.svg?branch=master)](https://travis-ci.org/pztrn/flagger)
+[![GoDoc](https://godoc.org/github.com/pztrn/flagger?status.svg)](https://godoc.org/github.com/pztrn/flagger) [![Build Status](https://travis-ci.org/pztrn/flagger.svg?branch=master)](https://travis-ci.org/pztrn/flagger)
 
 # Flagger
 
@@ -54,4 +54,4 @@ if err != nil {
 }
 ```
 
-For more examples take a look at ``flagger_test.go`` file or [at GoDoc](https://godoc.org/lab.pztrn.name/golibs/flagger).
+For more examples take a look at ``flagger_test.go`` file or [at GoDoc](https://github.com/pztrn/flagger).
