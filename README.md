@@ -1,4 +1,4 @@
-[![GoDoc](https://godoc.org/lab.pztrn.name/golibs/flagger?status.svg)](https://godoc.org/lab.pztrn.name/golibs/flagger)
+[![GoDoc](https://godoc.org/lab.pztrn.name/golibs/flagger?status.svg)](https://godoc.org/lab.pztrn.name/golibs/flagger) [![Build Status](https://travis-ci.org/pztrn/flagger.svg?branch=master)](https://travis-ci.org/pztrn/flagger)
 
 # Flagger
 
