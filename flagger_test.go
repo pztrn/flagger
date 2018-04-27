@@ -43,6 +43,15 @@ func TestFlaggerInitialization(t *testing.T) {
 	f.Initialize()
 }
 
+func TestFlaggerInitializationWithNilLogger(t *testing.T) {
+	fl := New(nil)
+	if f == nil {
+		t.Fatal("Logger initialization failed!")
+		t.FailNow()
+	}
+	fl.Initialize()
+}
+
 func TestFlaggerAddBoolFlag(t *testing.T) {
 	flagTestBool := Flag{
 		Name:         "testboolflag",

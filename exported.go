@@ -23,12 +23,26 @@
 
 package flagger
 
+import (
+	// stdlib
+	"log"
+	"os"
+)
+
 var (
 	logger LoggerInterface
 )
 
+// New creates new Flagger instance.
+// If no logger will be passed - we will use default "log" module and will
+// print logs to stdout.
 func New(l LoggerInterface) *Flagger {
-	logger = l
+	if l == nil {
+		lg := log.New(os.Stdout, "Flagger: ", log.LstdFlags)
+		logger = LoggerInterface(lg)
+	} else {
+		logger = l
+	}
 	f := Flagger{}
 	return &f
 }
