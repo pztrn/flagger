@@ -44,13 +44,13 @@ func TestFlaggerInitialization(t *testing.T) {
 }
 
 func TestFlaggerAddBoolFlag(t *testing.T) {
-	flag_testbool := Flag{
+	flagTestBool := Flag{
 		Name:         "testboolflag",
 		Description:  "Testing boolean flag",
 		Type:         "bool",
 		DefaultValue: true,
 	}
-	err := f.AddFlag(&flag_testbool)
+	err := f.AddFlag(&flagTestBool)
 	if err != nil {
 		t.Fatal("Failed to add boolean flag!")
 		t.FailNow()
@@ -58,13 +58,13 @@ func TestFlaggerAddBoolFlag(t *testing.T) {
 }
 
 func TestFlaggerAddIntFlag(t *testing.T) {
-	flag_testint := Flag{
+	flagTestInt := Flag{
 		Name:         "testintflag",
 		Description:  "Testing integer flag",
 		Type:         "int",
 		DefaultValue: 1,
 	}
-	err := f.AddFlag(&flag_testint)
+	err := f.AddFlag(&flagTestInt)
 	if err != nil {
 		t.Fatal("Failed to add integer flag!")
 		t.FailNow()
@@ -72,13 +72,13 @@ func TestFlaggerAddIntFlag(t *testing.T) {
 }
 
 func TestFlaggerAddStringFlag(t *testing.T) {
-	flag_teststring := Flag{
+	flagTestString := Flag{
 		Name:         "teststringflag",
 		Description:  "Testing string flag",
 		Type:         "string",
 		DefaultValue: "superstring",
 	}
-	err := f.AddFlag(&flag_teststring)
+	err := f.AddFlag(&flagTestString)
 	if err != nil {
 		t.Fatal("Failed to add string flag!")
 		t.FailNow()

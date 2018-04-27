@@ -26,6 +26,6 @@ package flagger
 // LoggerInterface provide logging interface, so everyone can inject own
 // logging handlers.
 type LoggerInterface interface {
-	Fatalln(args ...interface{})
-	Println(v ...interface{})
+	Fatal(v ...interface{})
+	Print(v ...interface{})
 }

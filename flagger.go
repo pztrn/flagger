@@ -51,7 +51,7 @@ type Flagger struct {
 func (f *Flagger) AddFlag(flag *Flag) error {
 	_, present := f.flags[flag.Name]
 	if present {
-		logger.Fatalln("Cannot add flag '" + flag.Name + "' - already added!")
+		logger.Fatal("Cannot add flag '" + flag.Name + "' - already added!")
 		return errors.New("Cannot add flag '" + flag.Name + "' - already added!")
 	}
 
@@ -92,7 +92,7 @@ func (f *Flagger) GetStringValue(name string) (string, error) {
 
 // Flagger initialization.
 func (f *Flagger) Initialize() {
-	logger.Println("Initializing CLI parameters parser...")
+	logger.Print("Initializing CLI parameters parser...")
 
 	f.flags = make(map[string]*Flag)
 
@@ -121,6 +121,6 @@ func (f *Flagger) Parse() {
 		}
 	}
 
-	logger.Println("Parsing CLI parameters...")
+	logger.Print("Parsing CLI parameters...")
 	flag.Parse()
 }
