@@ -28,31 +28,28 @@ import (
 	"log"
 	"os"
 	"testing"
-)
 
-var (
-	f *Flagger
+	// other
+	"github.com/stretchr/testify/require"
 )
 
 func TestFlaggerInitialization(t *testing.T) {
-	f = New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
-	if f == nil {
-		t.Fatal("Logger initialization failed!")
-		t.FailNow()
-	}
+	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	require.NotNil(t, f)
 	f.Initialize()
 }
 
 func TestFlaggerInitializationWithNilLogger(t *testing.T) {
-	fl := New(nil)
-	if f == nil {
-		t.Fatal("Logger initialization failed!")
-		t.FailNow()
-	}
-	fl.Initialize()
+	f := New(nil)
+	require.NotNil(t, f)
+	f.Initialize()
 }
 
 func TestFlaggerAddBoolFlag(t *testing.T) {
+	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	require.NotNil(t, f)
+	f.Initialize()
+
 	flagTestBool := Flag{
 		Name:         "testboolflag",
 		Description:  "Testing boolean flag",
@@ -60,13 +57,38 @@ func TestFlaggerAddBoolFlag(t *testing.T) {
 		DefaultValue: true,
 	}
 	err := f.AddFlag(&flagTestBool)
-	if err != nil {
-		t.Fatal("Failed to add boolean flag!")
-		t.FailNow()
+	require.Nil(t, err)
+}
+
+func TestFlaggerAddSameBoolVar(t *testing.T) {
+	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	require.NotNil(t, f)
+	f.Initialize()
+
+	flagTestBool := Flag{
+		Name:         "testboolflag",
+		Description:  "Testing boolean flag",
+		Type:         "bool",
+		DefaultValue: true,
 	}
+	err := f.AddFlag(&flagTestBool)
+	require.Nil(t, err)
+
+	flagTestBool1 := Flag{
+		Name:         "testboolflag",
+		Description:  "Testing boolean flag",
+		Type:         "bool",
+		DefaultValue: true,
+	}
+	err1 := f.AddFlag(&flagTestBool1)
+	require.NotNil(t, err1)
 }
 
 func TestFlaggerAddIntFlag(t *testing.T) {
+	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	require.NotNil(t, f)
+	f.Initialize()
+
 	flagTestInt := Flag{
 		Name:         "testintflag",
 		Description:  "Testing integer flag",
@@ -74,13 +96,14 @@ func TestFlaggerAddIntFlag(t *testing.T) {
 		DefaultValue: 1,
 	}
 	err := f.AddFlag(&flagTestInt)
-	if err != nil {
-		t.Fatal("Failed to add integer flag!")
-		t.FailNow()
-	}
+	require.Nil(t, err)
 }
 
 func TestFlaggerAddStringFlag(t *testing.T) {
+	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	require.NotNil(t, f)
+	f.Initialize()
+
 	flagTestString := Flag{
 		Name:         "teststringflag",
 		Description:  "Testing string flag",
@@ -88,52 +111,165 @@ func TestFlaggerAddStringFlag(t *testing.T) {
 		DefaultValue: "superstring",
 	}
 	err := f.AddFlag(&flagTestString)
-	if err != nil {
-		t.Fatal("Failed to add string flag!")
-		t.FailNow()
+	require.Nil(t, err)
+}
+func TestFlaggerParse(t *testing.T) {
+	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	require.NotNil(t, f)
+	f.Initialize()
+
+	flagTestString := Flag{
+		Name:         "teststringflag",
+		Description:  "Testing string flag",
+		Type:         "string",
+		DefaultValue: "superstring",
 	}
+	err := f.AddFlag(&flagTestString)
+	require.Nil(t, err)
+
+	f.Parse()
 }
 
-// This test doing nothing more but launching flags parsing.
-func TestFlaggerParse(t *testing.T) {
+func TestFlaggerParseAndReparse(t *testing.T) {
+	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	require.NotNil(t, f)
+	f.Initialize()
+
+	flagTestString := Flag{
+		Name:         "teststringflag",
+		Description:  "Testing string flag",
+		Type:         "string",
+		DefaultValue: "superstring",
+	}
+	err := f.AddFlag(&flagTestString)
+	require.Nil(t, err)
+
+	f.Parse()
 	f.Parse()
 }
 
 func TestFlaggerGetBoolFlag(t *testing.T) {
-	val, err := f.GetBoolValue("testboolflag")
-	if err != nil {
-		t.Fatal("Failed to get boolean flag: " + err.Error())
-		t.FailNow()
-	}
+	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	require.NotNil(t, f)
+	f.Initialize()
 
-	if !val {
-		t.Fatal("Failed to get boolean flag - should be true, but false received")
-		t.FailNow()
+	flagTestBool := Flag{
+		Name:         "testboolflag",
+		Description:  "Testing boolean flag",
+		Type:         "bool",
+		DefaultValue: true,
 	}
+	err := f.AddFlag(&flagTestBool)
+	require.Nil(t, err)
+
+	f.Parse()
+
+	val, err := f.GetBoolValue("testboolflag")
+	require.Nil(t, err)
+	require.True(t, val)
+}
+
+func TestFlaggerGetUnknownBoolFlag(t *testing.T) {
+	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	require.NotNil(t, f)
+	f.Initialize()
+
+	flagTestBool := Flag{
+		Name:         "testboolflag",
+		Description:  "Testing boolean flag",
+		Type:         "bool",
+		DefaultValue: true,
+	}
+	err := f.AddFlag(&flagTestBool)
+	require.Nil(t, err)
+
+	f.Parse()
+
+	val, err := f.GetBoolValue("unknownboolflag")
+	require.NotNil(t, err)
+	require.False(t, val)
 }
 
 func TestFlaggerGetIntFlag(t *testing.T) {
-	val, err := f.GetIntValue("testintflag")
-	if err != nil {
-		t.Fatal("Failed to get integer flag: " + err.Error())
-		t.FailNow()
-	}
+	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	require.NotNil(t, f)
+	f.Initialize()
 
-	if val == 0 {
-		t.Fatal("Failed to get integer flag - should be 1, but 0 received")
-		t.FailNow()
+	flagTestInt := Flag{
+		Name:         "testintflag",
+		Description:  "Testing integer flag",
+		Type:         "int",
+		DefaultValue: 1,
 	}
+	err := f.AddFlag(&flagTestInt)
+	require.Nil(t, err)
+
+	f.Parse()
+
+	val, err := f.GetIntValue("testintflag")
+	require.Nil(t, err)
+	require.NotEqual(t, 0, val)
+}
+
+func TestFlaggerGetUnknownIntFlag(t *testing.T) {
+	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	require.NotNil(t, f)
+	f.Initialize()
+
+	flagTestInt := Flag{
+		Name:         "testintflag",
+		Description:  "Testing integer flag",
+		Type:         "int",
+		DefaultValue: 1,
+	}
+	err := f.AddFlag(&flagTestInt)
+	require.Nil(t, err)
+
+	f.Parse()
+
+	val, err := f.GetIntValue("unknownintflag")
+	require.NotNil(t, err)
+	require.Equal(t, 0, val)
 }
 
 func TestFlaggerGetStringFlag(t *testing.T) {
-	val, err := f.GetStringValue("teststringflag")
-	if err != nil {
-		t.Fatal("Failed to get string flag: " + err.Error())
-		t.FailNow()
-	}
+	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	require.NotNil(t, f)
+	f.Initialize()
 
-	if val == "" {
-		t.Fatal("Failed to get string flag - should be 'superstring', but nothing received")
-		t.FailNow()
+	flagTestString := Flag{
+		Name:         "teststringflag",
+		Description:  "Testing string flag",
+		Type:         "string",
+		DefaultValue: "superstring",
 	}
+	err := f.AddFlag(&flagTestString)
+	require.Nil(t, err)
+
+	f.Parse()
+
+	val, err := f.GetStringValue("teststringflag")
+	require.Nil(t, err)
+	require.NotEqual(t, "", val)
+}
+
+func TestFlaggerGetUnknownStringFlag(t *testing.T) {
+	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	require.NotNil(t, f)
+	f.Initialize()
+
+	flagTestString := Flag{
+		Name:         "teststringflag",
+		Description:  "Testing string flag",
+		Type:         "string",
+		DefaultValue: "superstring",
+	}
+	err := f.AddFlag(&flagTestString)
+	require.Nil(t, err)
+
+	f.Parse()
+
+	val, err := f.GetStringValue("unknownstringflag")
+	require.NotNil(t, err)
+	require.Equal(t, "", val)
 }
