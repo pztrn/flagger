@@ -1,5 +1,7 @@
 [![GoDoc](https://godoc.org/github.com/pztrn/flagger?status.svg)](https://godoc.org/github.com/pztrn/flagger) [![Build Status](https://travis-ci.org/pztrn/flagger.svg?branch=master)](https://travis-ci.org/pztrn/flagger)
 
+**Flagger is moved to [GitLab](https://gitlab.com/pztrn/flagger)**
+
 # Flagger
 
 Flagger is an arbitrary CLI flags parser, like argparse in Python.
