@@ -251,6 +251,7 @@ func TestFlaggerGetStringFlag(t *testing.T) {
 	val, err := f.GetStringValue("teststringflag")
 	require.Nil(t, err)
 	require.NotEqual(t, "", val)
+	require.Equal(t, "superstring", val)
 }
 
 func TestFlaggerGetUnknownStringFlag(t *testing.T) {

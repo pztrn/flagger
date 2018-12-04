@@ -23,7 +23,7 @@
 
 package flagger
 
-// This structure represents addable flag for Flagger.
+// Flag represents addable flag for Flagger.
 type Flag struct {
 	// Flag name. It will be accessible using this name later.
 	Name string
