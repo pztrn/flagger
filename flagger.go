@@ -102,7 +102,7 @@ func (f *Flagger) Initialize() {
 	f.flagsInt = make(map[string]*int)
 	f.flagsString = make(map[string]*string)
 
-	f.flagSet = flag.NewFlagSet("flagger", flag.ContinueOnError)
+	f.flagSet = flag.NewFlagSet(applicationName, flag.ContinueOnError)
 }
 
 // Parse adds flags from flags map to flag package and parse
@@ -130,6 +130,6 @@ func (f *Flagger) Parse() {
 		}
 	}
 
-	logger.Print("Parsing CLI parameters...")
-	f.flagSet.Parse(os.Args)
+	logger.Print("Parsing CLI parameters:", os.Args)
+	f.flagSet.Parse(os.Args[1:])
 }

@@ -30,13 +30,15 @@ import (
 )
 
 var (
-	logger LoggerInterface
+	logger          LoggerInterface
+	applicationName string
 )
 
 // New creates new Flagger instance.
 // If no logger will be passed - we will use default "log" module and will
 // print logs to stdout.
-func New(l LoggerInterface) *Flagger {
+func New(appName string, l LoggerInterface) *Flagger {
+	applicationName = appName
 	if l == nil {
 		lg := log.New(os.Stdout, "Flagger: ", log.LstdFlags)
 		logger = LoggerInterface(lg)
