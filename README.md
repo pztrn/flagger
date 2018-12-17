@@ -19,7 +19,7 @@ It is able to run with standart log package, in that case
 initialize flagger like:
 
 ```
-flgr = flagger.New(flagger.LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+flgr = flagger.New("My Super Program", flagger.LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
 flgr.Initialize()
 ```
 
