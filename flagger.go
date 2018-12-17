@@ -131,5 +131,8 @@ func (f *Flagger) Parse() {
 	}
 
 	logger.Print("Parsing CLI parameters:", os.Args)
-	f.flagSet.Parse(os.Args[1:])
+	err := f.flagSet.Parse(os.Args[1:])
+	if err != nil {
+		os.Exit(0)
+	}
 }
