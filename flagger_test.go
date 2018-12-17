@@ -34,19 +34,19 @@ import (
 )
 
 func TestFlaggerInitialization(t *testing.T) {
-	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	f := New("tests", LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
 	require.NotNil(t, f)
 	f.Initialize()
 }
 
 func TestFlaggerInitializationWithNilLogger(t *testing.T) {
-	f := New(nil)
+	f := New("tests", nil)
 	require.NotNil(t, f)
 	f.Initialize()
 }
 
 func TestFlaggerAddBoolFlag(t *testing.T) {
-	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	f := New("tests", LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
 	require.NotNil(t, f)
 	f.Initialize()
 
@@ -61,7 +61,7 @@ func TestFlaggerAddBoolFlag(t *testing.T) {
 }
 
 func TestFlaggerAddSameBoolVar(t *testing.T) {
-	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	f := New("tests", LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
 	require.NotNil(t, f)
 	f.Initialize()
 
@@ -85,7 +85,7 @@ func TestFlaggerAddSameBoolVar(t *testing.T) {
 }
 
 func TestFlaggerAddIntFlag(t *testing.T) {
-	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	f := New("tests", LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
 	require.NotNil(t, f)
 	f.Initialize()
 
@@ -100,7 +100,7 @@ func TestFlaggerAddIntFlag(t *testing.T) {
 }
 
 func TestFlaggerAddStringFlag(t *testing.T) {
-	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	f := New("tests", LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
 	require.NotNil(t, f)
 	f.Initialize()
 
@@ -114,7 +114,7 @@ func TestFlaggerAddStringFlag(t *testing.T) {
 	require.Nil(t, err)
 }
 func TestFlaggerParse(t *testing.T) {
-	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	f := New("tests", LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
 	require.NotNil(t, f)
 	f.Initialize()
 
@@ -131,7 +131,7 @@ func TestFlaggerParse(t *testing.T) {
 }
 
 func TestFlaggerParseAndReparse(t *testing.T) {
-	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	f := New("tests", LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
 	require.NotNil(t, f)
 	f.Initialize()
 
@@ -149,7 +149,7 @@ func TestFlaggerParseAndReparse(t *testing.T) {
 }
 
 func TestFlaggerGetBoolFlag(t *testing.T) {
-	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	f := New("tests", LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
 	require.NotNil(t, f)
 	f.Initialize()
 
@@ -170,7 +170,7 @@ func TestFlaggerGetBoolFlag(t *testing.T) {
 }
 
 func TestFlaggerGetUnknownBoolFlag(t *testing.T) {
-	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	f := New("tests", LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
 	require.NotNil(t, f)
 	f.Initialize()
 
@@ -191,7 +191,7 @@ func TestFlaggerGetUnknownBoolFlag(t *testing.T) {
 }
 
 func TestFlaggerGetIntFlag(t *testing.T) {
-	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	f := New("tests", LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
 	require.NotNil(t, f)
 	f.Initialize()
 
@@ -212,7 +212,7 @@ func TestFlaggerGetIntFlag(t *testing.T) {
 }
 
 func TestFlaggerGetUnknownIntFlag(t *testing.T) {
-	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	f := New("tests", LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
 	require.NotNil(t, f)
 	f.Initialize()
 
@@ -233,7 +233,7 @@ func TestFlaggerGetUnknownIntFlag(t *testing.T) {
 }
 
 func TestFlaggerGetStringFlag(t *testing.T) {
-	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	f := New("tests", LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
 	require.NotNil(t, f)
 	f.Initialize()
 
@@ -255,7 +255,7 @@ func TestFlaggerGetStringFlag(t *testing.T) {
 }
 
 func TestFlaggerGetUnknownStringFlag(t *testing.T) {
-	f := New(LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
+	f := New("tests", LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
 	require.NotNil(t, f)
 	f.Initialize()
 
