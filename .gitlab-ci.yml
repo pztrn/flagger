@@ -8,7 +8,26 @@ before_script:
   - ln -s $CI_PROJECT_DIR ${GOPATH}/src/gitlab.com/pztrn/flagger
   - cd ${GOPATH}/src/gitlab.com/pztrn/flagger
 
-test:
+test:1.11.4:
+  image: golang:1.11.4
+  stage: test
+  tags: 
+    - docker
+  script:
+    - pwd
+    - go test -test.v -cover ./...
+
+test:1.10:
+  image: golang:1.10.7
+  stage: test
+  tags: 
+    - docker
+  script:
+    - pwd
+    - go test -test.v -cover ./...
+
+test:1.9:
+  image: golang:1.9.7
   stage: test
   tags: 
     - docker
