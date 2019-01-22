@@ -1,4 +1,4 @@
-[![GoDoc](https://godoc.org/github.com/pztrn/flagger?status.svg)](https://godoc.org/github.com/pztrn/flagger) [![Build Status](https://travis-ci.org/pztrn/flagger.svg?branch=master)](https://travis-ci.org/pztrn/flagger)
+[![GoDoc](https://godoc.org/github.com/pztrn/flagger?status.svg)](https://godoc.org/gitlab.com/pztrn/flagger)
 
 # Flagger
 
@@ -54,4 +54,10 @@ if err != nil {
 }
 ```
 
-For more examples take a look at ``flagger_test.go`` file or [at GoDoc](https://github.com/pztrn/flagger).
+For more examples take a look at ``flagger_test.go`` file or [at GoDoc](https://godoc.org/gitlab.com/pztrn/flagger).
+
+# Get help
+
+If you want to report a bug - feel free to report it via Gitlab's issues system. Note that everything that isn't a bug report or feature request will be closed without any futher comments.
+
+If you want to request some help (without warranties), propose a feature request or discuss flagger in any way - please use our mailing lists at flagger@googlegroups.com. To be able to send messages there you should subscribe by sending email to ``flagger+subscribe@googlegroups.com``, subject and mail body can be random.
