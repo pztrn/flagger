@@ -1,6 +1,6 @@
 // Flagger - arbitrary CLI flags parser.
 //
-// Copyright (c) 2017-2018, Stanislav N. aka pztrn.
+// Copyright (c) 2017-2019, Stanislav N. aka pztrn.
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the

@@ -1,4 +1,4 @@
-[![GoDoc](https://godoc.org/github.com/pztrn/flagger?status.svg)](https://godoc.org/gitlab.com/pztrn/flagger)
+[![GoDoc](https://godoc.org/go.dev.pztrn.name/flagger?status.svg)](https://godoc.org/go.dev.pztrn.name/flagger) [![Drone (self-hosted)](https://img.shields.io/drone/build/libraries/flagger?server=https%3A%2F%2Fci.dev.pztrn.name)](https://ci.dev.pztrn.name/libraries/flagger/) [![Discord](https://img.shields.io/discord/632359730089689128)](https://discord.gg/qHN6KsD) ![Keybase XLM](https://img.shields.io/keybase/xlm/pztrn)
 
 # Flagger
 
@@ -8,7 +8,7 @@ Flagger is able to parse boolean, integer and string flags.
 # Installation
 
 ```
-go get -u -v lab.pztrn.name/golibs/flagger
+go get -u -v go.dev.pztrn.name/flagger
 ```
 
 # Usage

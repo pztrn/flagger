@@ -1,0 +1,54 @@
+---
+kind: pipeline
+type: docker
+name: build
+
+steps:
+  - name: notify-start
+    image: appleboy/drone-discord
+    settings:
+      webhook_id:
+        from_secret: discord_webhook_id
+      webhook_token:
+        from_secret: discord_webhook_secret
+      message: 'Starting building **{{repo.name}}#{{build.number}}@{{build.commit}}** @ {{datetime build.started "02-Jan-2006 15:04:05 MST" "Asia/Yekaterinburg"}} (See {{build.link}} for logs).'
+
+  - name: lint
+    image: golangci/golangci-lint:latest
+    environment:
+      CGO_ENABLED: 0
+    commands:
+      - golangci-lint run
+
+  - name: test-1.13
+    image: golang:1.13.1-alpine
+    environment:
+      CGO_ENABLED: 0
+    commands:
+      - go test -cover -test.v .
+  
+  - name: test-1.12
+    image: golang:1.12.10-alpine
+    environment:
+      CGO_ENABLED: 0
+      GO111MODULE: on
+    commands:
+      - go test -cover -test.v .
+
+  - name: notify-end
+    when:
+      status:
+      - success
+      - failure
+    image: appleboy/drone-discord
+    settings:
+      webhook_id:
+        from_secret: discord_webhook_id
+      webhook_token:
+        from_secret: discord_webhook_secret
+      message: "
+        {{#success build.status}}
+          **{{repo.name}}#{{build.number}}@{{build.commit}}** built and pushed to hub.docker.com.
+        {{ else }}
+          **{{repo.name}}#{{build.number}}@{{build.commit}}** failed. See {{build.link}}.
+        {{/success}}"
