@@ -1,4 +1,4 @@
-[![GoDoc](https://godoc.org/go.dev.pztrn.name/flagger?status.svg)](https://godoc.org/go.dev.pztrn.name/flagger) [![Drone (self-hosted)](https://img.shields.io/drone/build/libraries/flagger?server=https%3A%2F%2Fci.dev.pztrn.name)](https://ci.dev.pztrn.name/libraries/flagger/) [![Discord](https://img.shields.io/discord/632359730089689128)](https://discord.gg/qHN6KsD) ![Keybase XLM](https://img.shields.io/keybase/xlm/pztrn)
+[![GoDoc](https://godoc.org/go.dev.pztrn.name/flagger?status.svg)](https://godoc.org/go.dev.pztrn.name/flagger) [![Drone (self-hosted)](https://img.shields.io/drone/build/libraries/flagger?server=https%3A%2F%2Fci.dev.pztrn.name)](https://ci.dev.pztrn.name/libraries/flagger/) [![Discord](https://img.shields.io/discord/632359730089689128)](https://discord.gg/qHN6KsD) ![Keybase XLM](https://img.shields.io/keybase/xlm/pztrn) [![Go Report Card](https://goreportcard.com/badge/go.dev.pztrn.name/flagger)](https://goreportcard.com/report/go.dev.pztrn.name/flagger)
 
 # Flagger
 

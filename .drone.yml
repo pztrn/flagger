@@ -5,7 +5,7 @@ name: build
 
 steps:
   - name: notify-start
-    image: appleboy/drone-discord
+    image: pztrn/discordrone
     settings:
       webhook_id:
         from_secret: discord_webhook_id
@@ -40,7 +40,7 @@ steps:
       status:
       - success
       - failure
-    image: appleboy/drone-discord
+    image: pztrn/discordrone
     settings:
       webhook_id:
         from_secret: discord_webhook_id
