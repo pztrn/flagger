@@ -1,4 +1,4 @@
-module gitlab.com/pztrn/flagger
+module go.dev.pztrn.name/flagger
 
 go 1.13
 
