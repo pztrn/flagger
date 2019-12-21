@@ -21,14 +21,14 @@ steps:
       - golangci-lint run
 
   - name: test-1.13
-    image: golang:1.13.1-alpine
+    image: golang:1.13.5-alpine
     environment:
       CGO_ENABLED: 0
     commands:
       - go test -cover -test.v .
-  
+
   - name: test-1.12
-    image: golang:1.12.10-alpine
+    image: golang:1.12.14-alpine
     environment:
       CGO_ENABLED: 0
       GO111MODULE: on
@@ -38,8 +38,8 @@ steps:
   - name: notify-end
     when:
       status:
-      - success
-      - failure
+        - success
+        - failure
     image: pztrn/discordrone
     settings:
       webhook_id:
@@ -48,7 +48,7 @@ steps:
         from_secret: discord_webhook_secret
       message: "
         {{#success build.status}}
-          **{{repo.name}}#{{build.number}}@{{commit.sha}}** pipeline completed in {{since build.startedint}}.
+        **{{repo.name}}#{{build.number}}@{{commit.sha}}** pipeline completed in {{since build.startedint}}.
         {{ else }}
-          **{{repo.name}}#{{build.number}}@{{commit.sha}}** failed. See {{build.link}}.
+        **{{repo.name}}#{{build.number}}@{{commit.sha}}** failed. See {{build.link}}.
         {{/success}}"
