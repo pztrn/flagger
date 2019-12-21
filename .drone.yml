@@ -31,16 +31,6 @@ steps:
     depends_on:
       - notify-start
 
-  - name: test-1.12
-    image: golang:1.12.14-alpine
-    environment:
-      CGO_ENABLED: 0
-      GO111MODULE: on
-    commands:
-      - go test -cover -test.v .
-    depends_on:
-      - notify-start
-
   - name: notify-end
     when:
       status:
