@@ -56,6 +56,7 @@ func (f *Flagger) AddFlag(flag *Flag) error {
 	}
 
 	f.flags[flag.Name] = flag
+
 	return nil
 }
 
@@ -67,6 +68,7 @@ func (f *Flagger) GetBoolValue(name string) (bool, error) {
 	if !present {
 		return false, errors.New("No such flag: " + name)
 	}
+
 	return (*fl), nil
 }
 
@@ -77,6 +79,7 @@ func (f *Flagger) GetIntValue(name string) (int, error) {
 	if !present {
 		return 0, errors.New("No such flag: " + name)
 	}
+
 	return (*fl), nil
 }
 
@@ -87,6 +90,7 @@ func (f *Flagger) GetStringValue(name string) (string, error) {
 	if !present {
 		return "", errors.New("No such flag: " + name)
 	}
+
 	return (*fl), nil
 }
 
@@ -129,6 +133,7 @@ func (f *Flagger) Parse() {
 	}
 
 	logger.Print("Parsing CLI parameters:", os.Args)
+
 	err := f.flagSet.Parse(os.Args[1:])
 	if err != nil {
 		os.Exit(0)

@@ -39,12 +39,15 @@ var (
 // print logs to stdout.
 func New(appName string, l LoggerInterface) *Flagger {
 	applicationName = appName
+
 	if l == nil {
 		lg := log.New(os.Stdout, "Flagger: ", log.LstdFlags)
 		logger = LoggerInterface(lg)
 	} else {
 		logger = l
 	}
+
 	f := Flagger{}
+
 	return &f
 }

@@ -19,6 +19,8 @@ steps:
       CGO_ENABLED: 0
     commands:
       - golangci-lint run
+    depends_on:
+      - notify-start
 
   - name: test-1.13
     image: golang:1.13.5-alpine
@@ -26,6 +28,8 @@ steps:
       CGO_ENABLED: 0
     commands:
       - go test -cover -test.v .
+    depends_on:
+      - notify-start
 
   - name: test-1.12
     image: golang:1.12.14-alpine
@@ -34,6 +38,8 @@ steps:
       GO111MODULE: on
     commands:
       - go test -cover -test.v .
+    depends_on:
+      - notify-start
 
   - name: notify-end
     when:
@@ -52,3 +58,7 @@ steps:
         {{ else }}
         **{{repo.name}}#{{build.number}}@{{commit.sha}}** failed. See {{build.link}}.
         {{/success}}"
+    depends_on:
+      - lint
+      - test-1.12
+      - test-1.13

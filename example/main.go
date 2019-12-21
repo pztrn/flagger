@@ -15,5 +15,6 @@ func main() {
 		Type:         "bool",
 		DefaultValue: false,
 	})
+
 	f.Parse()
 }
