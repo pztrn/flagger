@@ -4,3 +4,5 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/testify v1.2.2 h1:bSDNvY7ZPG5RlJ8otE/7V6gMiyenm9RtJ7IUVIAoJ1w=
 github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=
+gitlab.com/pztrn/flagger v0.0.0-20191015160147-a9ca273d8b73 h1:3wo+sJrNguob5mLnQQmH2/Rh2oCuEhIplgWpAMutFzY=
+gitlab.com/pztrn/flagger v0.0.0-20191015160147-a9ca273d8b73/go.mod h1:I+FxZN2hnd4iELlBFizaDD4QJy92x6Ky4+76U7L3gBQ=

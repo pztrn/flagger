@@ -9,7 +9,7 @@ var f *flagger.Flagger
 func main() {
 	f = flagger.New("testprogram", nil)
 	f.Initialize()
-	f.AddFlag(&flagger.Flag{
+	_ = f.AddFlag(&flagger.Flag{
 		Name:         "testflag",
 		Description:  "Just a test flag",
 		Type:         "bool",

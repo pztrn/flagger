@@ -28,7 +28,6 @@ import (
 	"errors"
 	"flag"
 	"os"
-	"sync"
 )
 
 // Flagger implements (kinda) extended CLI parameters parser. As it
@@ -39,8 +38,7 @@ import (
 // parse or get.
 type Flagger struct {
 	// Flags that was added by user.
-	flags      map[string]*Flag
-	flagsMutex sync.Mutex
+	flags map[string]*Flag
 
 	// Flags that will be passed to flag module.
 	flagsBool   map[string]*bool
