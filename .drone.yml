@@ -1,11 +1,13 @@
 ---
 kind: pipeline
 type: docker
-name: build
+name: test-and-lint
 
 steps:
   - name: notify-start
     image: pztrn/discordrone
+    when:
+      instance: ci.dev.pztrn.name
     settings:
       webhook_id:
         from_secret: discord_webhook_id
@@ -16,16 +18,25 @@ steps:
   - name: lint
     image: golangci/golangci-lint:latest
     environment:
-      CGO_ENABLED: 0
+      CGO_ENABLED: "0"
     commands:
       - golangci-lint run
     depends_on:
       - notify-start
 
-  - name: test-1.13
-    image: golang:1.13.5-alpine
+  - name: test-1.14
+    image: golang:1.14.4-alpine
     environment:
-      CGO_ENABLED: 0
+      CGO_ENABLED: "0"
+    commands:
+      - go test -cover -test.v .
+    depends_on:
+      - notify-start
+
+  - name: test-1.13
+    image: golang:1.13.12-alpine
+    environment:
+      CGO_ENABLED: "0"
     commands:
       - go test -cover -test.v .
     depends_on:
@@ -33,6 +44,7 @@ steps:
 
   - name: notify-end
     when:
+      instance: ci.dev.pztrn.name
       status:
         - success
         - failure
@@ -51,3 +63,4 @@ steps:
     depends_on:
       - lint
       - test-1.13
+      - test-1.14

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gitlab.com/pztrn/flagger"
+	"go.dev.pztrn.name/flagger"
 )
 
 var f *flagger.Flagger

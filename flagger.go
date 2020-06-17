@@ -25,7 +25,7 @@ package flagger
 
 import (
 	// stdlib
-	"errors"
+
 	"flag"
 	"os"
 )
@@ -52,7 +52,7 @@ type Flagger struct {
 func (f *Flagger) AddFlag(flag *Flag) error {
 	_, present := f.flags[flag.Name]
 	if present {
-		return errors.New("Cannot add flag '" + flag.Name + "' - already added!")
+		return ErrFlagAlreadyAdded
 	}
 
 	f.flags[flag.Name] = flag
@@ -66,7 +66,7 @@ func (f *Flagger) AddFlag(flag *Flag) error {
 func (f *Flagger) GetBoolValue(name string) (bool, error) {
 	fl, present := f.flagsBool[name]
 	if !present {
-		return false, errors.New("No such flag: " + name)
+		return false, ErrNoSuchFlag
 	}
 
 	return (*fl), nil
@@ -77,7 +77,7 @@ func (f *Flagger) GetBoolValue(name string) (bool, error) {
 func (f *Flagger) GetIntValue(name string) (int, error) {
 	fl, present := f.flagsInt[name]
 	if !present {
-		return 0, errors.New("No such flag: " + name)
+		return 0, ErrNoSuchFlag
 	}
 
 	return (*fl), nil
@@ -88,7 +88,7 @@ func (f *Flagger) GetIntValue(name string) (int, error) {
 func (f *Flagger) GetStringValue(name string) (string, error) {
 	fl, present := f.flagsString[name]
 	if !present {
-		return "", errors.New("No such flag: " + name)
+		return "", ErrNoSuchFlag
 	}
 
 	return (*fl), nil
