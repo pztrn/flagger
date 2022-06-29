@@ -25,12 +25,12 @@ package flagger
 
 // Flag represents addable flag for Flagger.
 type Flag struct {
+	// This value will be reflected.
+	DefaultValue interface{}
 	// Flag name. It will be accessible using this name later.
 	Name string
 	// Description for help output.
 	Description string
 	// Type can be one of "bool", "int", "string".
 	Type string
-	// This value will be reflected.
-	DefaultValue interface{}
 }

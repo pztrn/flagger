@@ -5,23 +5,15 @@ name: test-and-lint
 
 steps:
   - name: lint
-    image: golangci/golangci-lint:latest
+    image: code.pztrn.name/containers/mirror/golangci/golangci-lint:v1.46.2
     environment:
       CGO_ENABLED: "0"
     commands:
       - golangci-lint run
 
-  - name: test-1.14
-    image: golang:1.14.4-alpine
+  - name: test-1.18
+    image: code.pztrn.name/containers/mirror/golang:1.18.3-alpine
     environment:
       CGO_ENABLED: "0"
     commands:
       - go test -cover -test.v .
-
-  - name: test-1.13
-    image: golang:1.13.12-alpine
-    environment:
-      CGO_ENABLED: "0"
-    commands:
-      - go test -cover -test.v .
-

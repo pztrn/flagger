@@ -24,7 +24,6 @@
 package flagger
 
 import (
-	// stdlib
 	"log"
 	"os"
 )
@@ -47,6 +46,7 @@ func New(appName string, l LoggerInterface) *Flagger {
 		logger = l
 	}
 
+	// nolint:exhaustruct
 	f := Flagger{}
 
 	return &f

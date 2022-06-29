@@ -24,12 +24,10 @@
 package flagger
 
 import (
-	// stdlib
 	"log"
 	"os"
 	"testing"
 
-	// other
 	"github.com/stretchr/testify/require"
 )
 
@@ -113,6 +111,7 @@ func TestFlaggerAddStringFlag(t *testing.T) {
 	err := f.AddFlag(&flagTestString)
 	require.Nil(t, err)
 }
+
 func TestFlaggerParse(t *testing.T) {
 	f := New("tests", LoggerInterface(log.New(os.Stdout, "testing logger: ", log.Lshortfile)))
 	require.NotNil(t, f)

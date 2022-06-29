@@ -10,6 +10,10 @@ linters:
     - gocritic
     # Complains about main() lengths, which isn't an issue.
     - funlen
+    - varnamelen
+    - paralleltest
+    # Deprecated.
+    - exhaustivestruct
 linters-settings:
   lll:
     line-length: 420

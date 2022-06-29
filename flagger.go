@@ -24,8 +24,6 @@
 package flagger
 
 import (
-	// stdlib
-
 	"flag"
 	"os"
 )
@@ -50,8 +48,7 @@ type Flagger struct {
 
 // AddFlag adds flag to list of flags we will pass to ``flag`` package.
 func (f *Flagger) AddFlag(flag *Flag) error {
-	_, present := f.flags[flag.Name]
-	if present {
+	if _, present := f.flags[flag.Name]; present {
 		return ErrFlagAlreadyAdded
 	}
 
@@ -117,16 +114,17 @@ func (f *Flagger) Parse() {
 	}
 
 	for name, fl := range f.flags {
-		if fl.Type == "bool" {
-			fdef := fl.DefaultValue.(bool)
+		switch fl.Type {
+		case "bool":
+			fdef, _ := fl.DefaultValue.(bool)
 			f.flagsBool[name] = &fdef
 			f.flagSet.BoolVar(&fdef, name, fdef, fl.Description)
-		} else if fl.Type == "int" {
-			fdef := fl.DefaultValue.(int)
+		case "int":
+			fdef, _ := fl.DefaultValue.(int)
 			f.flagsInt[name] = &fdef
 			f.flagSet.IntVar(&fdef, name, fdef, fl.Description)
-		} else if fl.Type == "string" {
-			fdef := fl.DefaultValue.(string)
+		case "string":
+			fdef, _ := fl.DefaultValue.(string)
 			f.flagsString[name] = &fdef
 			f.flagSet.StringVar(&fdef, name, fdef, fl.Description)
 		}
@@ -134,8 +132,7 @@ func (f *Flagger) Parse() {
 
 	logger.Print("Parsing CLI parameters:", os.Args)
 
-	err := f.flagSet.Parse(os.Args[1:])
-	if err != nil {
+	if err := f.flagSet.Parse(os.Args[1:]); err != nil {
 		os.Exit(0)
 	}
 }
